@@ -28,7 +28,7 @@ export const PageSignIn = () => {
       console.log(credentials);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
-      console.error('Error signing in:', error);
+      console.error('Error on sign in:', error);
     } finally {
       setIsLoading(false);
     }
