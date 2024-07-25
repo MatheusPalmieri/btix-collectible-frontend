@@ -7,7 +7,6 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 
 // Styles
-import './styles/tailwind.css';
 import './styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
