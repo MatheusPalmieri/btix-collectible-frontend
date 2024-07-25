@@ -11,15 +11,27 @@ import { Input } from '@/components/ui/input';
 import { signInProps, signInSchema } from '@/schemas/auth/sign-in.schema';
 import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export const PageSignIn = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const form = useForm<signInProps>({
     resolver: yupResolver(signInSchema),
   });
 
   const onSubmit: SubmitHandler<signInProps> = async (credentials: signInProps) => {
-    console.log(credentials);
+    setIsLoading(true);
+
+    try {
+      console.log(credentials);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+    } catch (error) {
+      console.error('Error signing in:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -51,10 +63,13 @@ export const PageSignIn = () => {
                 <FormControl>
                   <Input type='password' placeholder='********' {...field} />
                 </FormControl>
-                <p className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold cursor-pointer hover:text-primary hover:underline transition-colors duration-200'>
-                  Forgot your password?
-                </p>
-                <FormMessage />
+                <div className='flex items-center justify-between'>
+                  <FormMessage />
+
+                  <p className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold cursor-pointer hover:text-primary hover:underline transition-colors duration-200'>
+                    Forgot your password?
+                  </p>
+                </div>
               </FormItem>
             )}
           />
@@ -66,7 +81,7 @@ export const PageSignIn = () => {
             </span>
           </p>
 
-          <Button className='w-full' isSubmit>
+          <Button className='w-full' isSubmit isLoading={isLoading} isDisabled={isLoading}>
             Sign In
           </Button>
         </form>
