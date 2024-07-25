@@ -42,7 +42,7 @@ export const PageVerify = () => {
   }, [watch, handleSubmit, onSubmit]);
 
   return (
-    <Container>
+    <Container back='sign-in'>
       <h1 className='text-2xl text-center font-bold'>Verify your account</h1>
 
       <Form {...form}>
@@ -84,7 +84,7 @@ export const PageVerify = () => {
 
           <p className='text-secondary-100 text-center'>
             Didn't receive the code?{' '}
-            <span className='text-primary font-semibold cursor-pointer hover:underline transition-colors duration-200'>
+            <span className='text-primary font-semibold cursor-pointer hover:underline transition-colors duration-300'>
               Resend
             </span>
           </p>

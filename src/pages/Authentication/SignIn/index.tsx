@@ -66,9 +66,12 @@ export const PageSignIn = () => {
                 <div className='flex items-center justify-between'>
                   <FormMessage />
 
-                  <p className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold cursor-pointer hover:text-primary hover:underline transition-colors duration-200'>
+                  <a
+                    href='forgot-password'
+                    className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold'
+                  >
                     Forgot your password?
-                  </p>
+                  </a>
                 </div>
               </FormItem>
             )}
@@ -76,9 +79,9 @@ export const PageSignIn = () => {
 
           <p className='text-secondary-50 text-center'>
             Don't have an account?{' '}
-            <span className='text-primary font-semibold cursor-pointer hover:underline transition-colors duration-200'>
+            <a href='sign-up' className='font-semibold'>
               Sign up
-            </span>
+            </a>
           </p>
 
           <Button className='w-full' isSubmit isLoading={isLoading} isDisabled={isLoading}>

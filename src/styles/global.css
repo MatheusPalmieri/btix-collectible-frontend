@@ -67,3 +67,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+a {
+  @apply text-primary no-underline transition-all duration-300;
+}
+
+a:hover {
+  @apply text-primary-500/90 underline;
+}

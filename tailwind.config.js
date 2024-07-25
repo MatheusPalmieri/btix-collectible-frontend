@@ -74,6 +74,9 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      minHeight: {
+        'screen-minus-80': 'calc(100dvh - 80px)',
+      },
       fontFamily: {
         sans: 'Quicksand',
       },
