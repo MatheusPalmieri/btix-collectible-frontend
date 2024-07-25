@@ -7,7 +7,7 @@ interface Props extends ComponentProps<'main'> {
   back?: string;
 }
 
-export const AuthenticationContainer = ({ children, back, className, ...props }: Props) => (
+export const Container = ({ children, back, className, ...props }: Props) => (
   <div>
     <Navbar back={back} />
 

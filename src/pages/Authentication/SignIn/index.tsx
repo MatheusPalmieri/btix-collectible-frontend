@@ -1,3 +1,4 @@
+import { Container } from '@/components/Container';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -9,7 +10,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { signInProps, signInSchema } from '@/schemas/auth/sign-in.schema';
-import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';

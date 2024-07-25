@@ -1,4 +1,4 @@
-import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
+import { Container } from '@/components/Container';
 
 export const PageForgotPassword = () => {
   return (

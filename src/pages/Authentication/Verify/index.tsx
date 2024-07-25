@@ -1,3 +1,4 @@
+import { Container } from '@/components/Container';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import {
   InputOTP,
@@ -6,7 +7,6 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { verifyProps, verifySchema } from '@/schemas/auth/verify.schema';
-import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { useEffect, useState } from 'react';
