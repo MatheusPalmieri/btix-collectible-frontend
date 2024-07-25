@@ -5,29 +5,29 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
-import { confirmProps, confirmSchema } from '@/schemas/auth/confirm.schema';
+import { verifyProps, verifySchema } from '@/schemas/auth/verify.schema';
 import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-export const PageConfirm = () => {
+export const PageVerify = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<confirmProps>({
-    resolver: yupResolver(confirmSchema),
+  const form = useForm<verifyProps>({
+    resolver: yupResolver(verifySchema),
   });
   const { handleSubmit, watch } = form;
 
-  const onSubmit: SubmitHandler<confirmProps> = async ({ code }: confirmProps) => {
+  const onSubmit: SubmitHandler<verifyProps> = async ({ code }: verifyProps) => {
     setIsLoading(true);
 
     try {
       console.log(code);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
-      console.error('Error on confirm code:', error);
+      console.error('Error on verify code:', error);
     } finally {
       setIsLoading(false);
     }

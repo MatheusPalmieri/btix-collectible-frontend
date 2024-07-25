@@ -1,4 +1,4 @@
-import { PageConfirm, PageSignIn, PageSignUp } from '@/pages/Authentication';
+import { PageSignIn, PageSignUp, PageVerify } from '@/pages/Authentication';
 import { PageHome } from '@/pages/Private';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     element: <PageSignUp />,
   },
   {
-    path: '/confirm',
-    element: <PageConfirm />,
+    path: '/verify',
+    element: <PageVerify />,
   },
 ]);
