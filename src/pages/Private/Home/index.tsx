@@ -1,4 +1,4 @@
-export const Home = () => (
+export const PageHome = () => (
   <section className='h-[100dvh] flex flex-col items-center justify-center gap-3'>
     <h1 className='text-4xl text-center font-bold'>Template React</h1>
     <p className='text-2xl text-center'>

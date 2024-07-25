@@ -1,0 +1,76 @@
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { signInProps, signInSchema } from '@/schemas/auth/sign-in.schema';
+import { AuthenticationContainer as Container } from '@/sections/Authentication/Container';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+export const PageSignIn = () => {
+  const form = useForm<signInProps>({
+    resolver: yupResolver(signInSchema),
+  });
+
+  const onSubmit: SubmitHandler<signInProps> = async (credentials: signInProps) => {
+    console.log(credentials);
+  };
+
+  return (
+    <Container>
+      <h1 className='text-2xl text-center font-bold'>Sign in to your account</h1>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder='collectible@btix.app' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type='password' placeholder='********' {...field} />
+                </FormControl>
+                <p className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold cursor-pointer hover:text-primary hover:underline transition-colors duration-200'>
+                  Forgot your password?
+                </p>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <p className='text-secondary-50 text-center'>
+            Don't have an account?{' '}
+            <span className='text-primary font-semibold cursor-pointer hover:underline transition-colors duration-200'>
+              Sign up
+            </span>
+          </p>
+
+          <Button className='w-full' isSubmit>
+            Sign In
+          </Button>
+        </form>
+      </Form>
+    </Container>
+  );
+};
