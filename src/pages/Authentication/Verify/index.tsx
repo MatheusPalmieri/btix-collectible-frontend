@@ -42,7 +42,7 @@ export const PageVerify = () => {
   }, [watch, handleSubmit, onSubmit]);
 
   return (
-    <Container back='sign-in'>
+    <Container flex back='sign-in'>
       <h1 className='text-2xl text-center font-bold'>Verify your account</h1>
 
       <Form {...form}>

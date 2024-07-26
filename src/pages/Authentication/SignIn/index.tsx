@@ -35,7 +35,7 @@ export const PageSignIn = () => {
   };
 
   return (
-    <Container>
+    <Container flex>
       <h1 className='text-2xl text-center font-bold'>Sign in to your account</h1>
 
       <Form {...form}>
