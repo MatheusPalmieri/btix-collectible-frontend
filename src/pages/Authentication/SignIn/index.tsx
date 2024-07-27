@@ -1,4 +1,5 @@
 import { Container } from '@/components/Container';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -9,26 +10,38 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useAuthStore } from '@/contexts/auth';
 import { signInProps, signInSchema } from '@/schemas/auth/sign-in.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { AxiosError } from 'axios';
+import { Info } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export const PageSignIn = () => {
+  const { signIn } = useAuthStore();
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<signInProps>({
     resolver: yupResolver(signInSchema),
   });
 
   const onSubmit: SubmitHandler<signInProps> = async (credentials: signInProps) => {
-    setIsLoading(true);
-
     try {
-      console.log(credentials);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-    } catch (error) {
-      console.error('Error on sign in:', error);
+      setIsLoading(true);
+      await signIn(credentials);
+      navigate('/');
+    } catch (error: AxiosError | any) {
+      const { message } = error.response.data;
+      if (message === 'INVALID_USER') {
+        setError('Email or password is incorrect. Please try again.');
+      } else {
+        setError('An error occurred. Please try again later.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -83,6 +96,14 @@ export const PageSignIn = () => {
               Sign up
             </a>
           </p>
+
+          {error && (
+            <Alert variant='destructive'>
+              <Info className='h-4 w-4' />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}.</AlertDescription>
+            </Alert>
+          )}
 
           <Button className='w-full' isSubmit isLoading={isLoading} isDisabled={isLoading}>
             Sign In

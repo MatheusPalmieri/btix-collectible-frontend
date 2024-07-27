@@ -1,7 +1,7 @@
 import { Container } from '@/components/Container';
-import { Avatar } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
+import { useAuthStore } from '@/contexts/auth';
 import { motion } from 'framer-motion';
 import { Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -9,18 +9,20 @@ import { useNavigate } from 'react-router-dom';
 export const PageHome = () => {
   const navigate = useNavigate();
 
+  const { user } = useAuthStore();
+
   return (
     <Container type='medium'>
       <section className='flex items-center gap-4'>
-        <Avatar className='size-24 rounded-lg'>
-          <AvatarImage src='https://github.com/shadcn.png' />
+        <Avatar className='size-24'>
+          <AvatarImage src='' />
           <AvatarFallback>MP</AvatarFallback>
         </Avatar>
 
         <div className='space-y-2'>
           <div>
-            <h1 className='text-2xl font-bold'>Matheus Palmieri</h1>
-            <p className='text-sm text-secondary-100'>matheus@btix.app</p>
+            <h1 className='text-2xl font-bold'>{user?.name}</h1>
+            <p className='text-sm text-secondary-100'>{user?.email}</p>
           </div>
 
           <Button variant='secondary' className='h-6 rounded-md'>
@@ -33,10 +35,10 @@ export const PageHome = () => {
         {Array.from({ length: 5 }).map((_, index) => (
           <motion.div
             key={index}
-            initial={{ x: -20, opacity: 0 }}
+            initial={{ x: -10, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, delay: index < 6 ? 0.1 * index : 0.1 }}
-            className='bg-secondary-400/70 flex items-center justify-between p-4 rounded-lg hover:bg-secondary-300 cursor-pointer transition-all duration-300'
+            transition={{ duration: 0.2, delay: index < 6 ? 0.1 * index : 0.1 }}
+            className='bg-secondary-400/70 flex items-center justify-between p-4 rounded-lg hover:bg-secondary-300 cursor-pointer transition-colors duration-300'
             onClick={() => navigate('/collectible', { state: { id: index } })}
           >
             <div className='flex items-center gap-4'>
