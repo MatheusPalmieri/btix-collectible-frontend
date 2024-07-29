@@ -1,15 +1,23 @@
 export enum UserRole {
-  USER = "user",
-  ADMIN = "admin",
-  TICKET_COMPANY = "ticket-company",
+  USER = 'user',
+  ADMIN = 'admin',
+  TICKET_COMPANY = 'ticket-company',
 }
 
 export interface User {
   id: string;
+
   name: string;
+  avatar?: string;
+
   role: UserRole;
+
   email: string;
   isEmailVerified: boolean;
+
+  data: Record<string, any>;
+  apiKey: string;
+
   createdAt: string;
   updatedAt: string;
 }

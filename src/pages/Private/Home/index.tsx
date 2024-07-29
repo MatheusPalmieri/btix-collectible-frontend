@@ -1,6 +1,7 @@
 import { Container } from '@/components/Container';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useAuthStore } from '@/contexts/auth';
 import { motion } from 'framer-motion';
 import { Eye } from 'lucide-react';
@@ -10,22 +11,46 @@ export const PageHome = () => {
   const navigate = useNavigate();
 
   const { user } = useAuthStore();
+  console.log('🚀 ~ PageHome ~ user:', user);
+
+  const hasUser = !!user?.id;
+  const fallback = user?.name
+    ? user.name
+        .split(' ')
+        .map((name) => name[0])
+        .join('')
+    : '';
 
   return (
     <Container type='medium'>
       <section className='flex items-center gap-4'>
-        <Avatar className='size-24'>
-          <AvatarImage src='' />
-          <AvatarFallback>MP</AvatarFallback>
-        </Avatar>
+        {hasUser && (
+          <Avatar className='size-24'>
+            <AvatarImage src={user?.avatar} />
+            <AvatarFallback>{fallback}</AvatarFallback>
+          </Avatar>
+        )}
+
+        {!hasUser && <Skeleton className='size-24 rounded-lg' />}
 
         <div className='space-y-2'>
-          <div>
-            <h1 className='text-2xl font-bold'>{user?.name}</h1>
-            <p className='text-sm text-secondary-100'>{user?.email}</p>
+          <div className='space-y-0.5'>
+            {hasUser && (
+              <>
+                <h1 className='text-2xl font-bold'>{user?.name?.split(' ')[0]}</h1>
+                <p className='text-sm text-secondary-100'>{user?.email}</p>
+              </>
+            )}
+
+            {!hasUser && (
+              <>
+                <Skeleton className='w-24 h-8' />
+                <Skeleton className='w-52 h-5' />
+              </>
+            )}
           </div>
 
-          <Button variant='secondary' className='h-6 rounded-md'>
+          <Button variant='secondary' className='h-6 rounded-md' isDisabled={!hasUser}>
             View profile
           </Button>
         </div>
