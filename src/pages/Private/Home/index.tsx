@@ -1,6 +1,6 @@
+import { Access } from '@/components/Access';
 import { Container } from '@/components/Container';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuthStore } from '@/contexts/auth';
 import { Ticket } from '@/interfaces/ticket';
@@ -74,9 +74,7 @@ export const PageHome = () => {
             )}
           </div>
 
-          <Button variant='secondary' className='h-6 rounded-md' isDisabled={!hasUser}>
-            View profile
-          </Button>
+          <Access />
         </div>
       </section>
 
