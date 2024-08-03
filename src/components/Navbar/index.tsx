@@ -23,12 +23,7 @@ export const Navbar = ({ back }: Props) => {
   const handleBack = () => back && navigate(`/${back === '/' ? '' : back}`);
   const handleRedirect = (path: string) => navigate(`/${path}`);
 
-  const fallback = user?.id
-    ? user?.name
-        .split(' ')
-        .map((name) => name[0])
-        .join('')
-    : '';
+  const fallback = user?.id ? user?.name.split(' ')[0][0].toUpperCase() : '';
 
   const handleSignOut = () => {
     signOut();
