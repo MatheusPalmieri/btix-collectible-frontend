@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Advantage } from '@/interfaces/advantage';
+import { Benefit, BenefitStatus, BenefitType } from '@/interfaces/benefit';
+import { CollectibleBenefitLink } from '@/sections/Collectible/Benefit/Link';
 import { claimAdvantage, getAdvantage, getAdvantages } from '@/services/advantage';
+import { motion } from 'framer-motion';
 import { CircleCheck, Clock, ExternalLink, Link, Lock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +17,8 @@ export const PageCollectible = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isDesktop = window.innerWidth > 768;
 
-  const [advantage, setAdvantage] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [advantage, setAdvantage] = useState<Advantage>();
 
   const fetchAdvantage = async () => {
     try {
@@ -21,6 +27,8 @@ export const PageCollectible = () => {
       setAdvantage(advantage);
     } catch (error) {
       console.error('Error fetching advantage', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -31,40 +39,77 @@ export const PageCollectible = () => {
   return (
     <Container back='/' type='medium' className='flex flex-col'>
       <section className='flex gap-3'>
-        <img
-          src={advantage?.image ?? 'https://placehold.co/200X200/222/FD6244.png?text=B'}
-          alt='Cage'
-          className='size-24 rounded-lg bg-center bg-cover object-cover flex-shrink-0'
-        />
-        <div className='md:w-[80%]'>
-          <h1 className='font-bold'>{advantage?.name}</h1>
-          <p className='text-xs text-secondary-50 font-medium line-clamp-4'>
-            {advantage?.description}
-          </p>
-        </div>
+        {isLoading && (
+          <>
+            <Skeleton className='size-24' />
 
-        <div
-          className='hidden md:w-[25%] md:flex justify-end ml-auto'
-          onClick={() => setIsOpen(true)}
-        >
-          <Button className='font-bold'>View collectible</Button>
+            <div className='md:w-[80%] space-y-1'>
+              <Skeleton className='w-40 h-6' />
+              <Skeleton className='w-56 h-16' />
+            </div>
+          </>
+        )}
+
+        {!isLoading && advantage && (
+          <>
+            <img
+              src={advantage?.image ?? 'https://placehold.co/200X200/222/FD6244.png?text=B'}
+              alt='Cage'
+              className='size-24 rounded-lg bg-center bg-cover object-cover flex-shrink-0'
+            />
+            <div className='md:w-[80%]'>
+              <h1 className='font-bold'>{advantage?.name}</h1>
+              <p className='text-xs text-secondary-50 font-medium line-clamp-4'>
+                {advantage?.description}
+              </p>
+            </div>
+          </>
+        )}
+
+        <div className='hidden md:w-[25%] md:flex justify-end ml-auto'>
+          <Button className='font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
+            View collectible
+          </Button>
         </div>
       </section>
 
       <section className='space-y-4'>
-        <h2 className='text-2xl font-bold'>My advantages</h2>
+        <h2 className='text-2xl font-bold'>My benefits</h2>
 
         <Separator />
 
         {advantage &&
-          advantage?.benefits.map((benefit: any) => {
+          advantage?.benefits.map((benefit, idx) => {
+            if (benefit.type === BenefitType.LINK) {
+              return (
+                <motion.div
+                  key={benefit?.id}
+                  initial={{ opacity: 0, x: -5 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 * idx }}
+                >
+                  <CollectibleBenefitLink
+                    benefit={benefit}
+                    advantageId={advantage?.id}
+                    fetchAdvantage={fetchAdvantage}
+                  />
+                </motion.div>
+              );
+            }
+
             return (
-              <Benefit
+              <motion.div
                 key={benefit?.id}
-                benefit={benefit}
-                advantageId={advantage?.id}
-                fetchAdvantage={fetchAdvantage}
-              />
+                initial={{ opacity: 0, x: -5 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * idx }}
+              >
+                <Benefits
+                  benefit={benefit}
+                  advantageId={advantage?.id}
+                  fetchAdvantage={fetchAdvantage}
+                />
+              </motion.div>
             );
           })}
       </section>
@@ -84,7 +129,7 @@ export const PageCollectible = () => {
       )}
 
       <section className='flex-1 flex items-end justify-end md:hidden'>
-        <Button className='w-full font-bold' onClick={() => setIsOpen(true)}>
+        <Button className='w-full font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
           View collectible
         </Button>
       </section>
@@ -158,16 +203,17 @@ const Content = () => (
   </section>
 );
 
-const Benefit = ({
+const Benefits = ({
   benefit,
   advantageId,
   fetchAdvantage,
 }: {
-  benefit: any;
+  benefit: Benefit;
   advantageId: string;
-  fetchAdvantage: () => Promise<any>;
+  fetchAdvantage: () => Promise<void>;
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled] = useState<boolean>(benefit.status.indexOf(BenefitStatus.PENDING) === -1);
 
   const claimBenefit = async (benefitId: string) => {
     try {
@@ -177,7 +223,7 @@ const Benefit = ({
     } catch (error) {
       console.error('Error claiming benefit', error);
     } finally {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   };
 
@@ -195,9 +241,10 @@ const Benefit = ({
         <p className='text-sm font-medium'>{benefit.name}</p>
 
         <div className='w-8 bg-secondary-200 rounded-md flex items-center justify-center'>
-          <span className='text-xs'>
-            {benefit.quantity}/{benefit.quantityClaimed}
-          </span>
+          <p className='text-white/90 text-xs tracking-wide'>
+            {benefit.quantity}/
+            <span className='text-white font-semibold'>{benefit.quantityClaimed}</span>
+          </p>
         </div>
       </div>
 
@@ -205,9 +252,15 @@ const Benefit = ({
         className='w-20 h-6 rounded-md'
         onClick={() => claimBenefit(benefit?.id)}
         isLoading={isLoading}
-        isDisabled={isLoading}
+        isDisabled={isLoading || isDisabled}
       >
-        {benefit.type === 'link' ? 'Access' : 'Claim'}
+        {isDisabled
+          ? benefit.status === 'claimed'
+            ? 'Claimed'
+            : 'Blocked'
+          : benefit.type === 'link'
+            ? 'Access'
+            : 'Claim'}
       </Button>
     </div>
   );
