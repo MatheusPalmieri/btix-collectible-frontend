@@ -12,8 +12,11 @@ import { claimAdvantage, getAdvantage, getAdvantages } from '@/services/advantag
 import { motion } from 'framer-motion';
 import { CircleCheck, Clock, ExternalLink, Link, Lock } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const PageCollectible = () => {
+  const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isDesktop = window.innerWidth > 768;
 
@@ -68,13 +71,13 @@ export const PageCollectible = () => {
 
         <div className='hidden md:w-[25%] md:flex justify-end ml-auto'>
           <Button className='font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
-            View collectible
+            {t('pages.private.collectible.button_view_collectible')}
           </Button>
         </div>
       </section>
 
       <section className='space-y-4'>
-        <h2 className='text-2xl font-bold'>My benefits</h2>
+        <h2 className='text-2xl font-bold'> {t('pages.private.collectible.benefits')}</h2>
 
         <Separator />
 
@@ -130,7 +133,7 @@ export const PageCollectible = () => {
 
       <section className='flex-1 flex items-end justify-end md:hidden'>
         <Button className='w-full font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
-          View collectible
+          {t('pages.private.collectible.button_view_collectible')}
         </Button>
       </section>
     </Container>
@@ -212,8 +215,14 @@ const Benefits = ({
   advantageId: string;
   fetchAdvantage: () => Promise<void>;
 }) => {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isDisabled] = useState<boolean>(benefit.status.indexOf(BenefitStatus.PENDING) === -1);
+  const [isDisabled] = useState<boolean>(
+    benefit.status.indexOf(
+      BenefitStatus.PENDING || BenefitStatus.CLAIMED || BenefitStatus.CANCELLED,
+    ) === -1,
+  );
 
   const claimBenefit = async (benefitId: string) => {
     try {
@@ -255,12 +264,12 @@ const Benefits = ({
         isDisabled={isLoading || isDisabled}
       >
         {isDisabled
-          ? benefit.status === 'claimed'
-            ? 'Claimed'
-            : 'Blocked'
-          : benefit.type === 'link'
-            ? 'Access'
-            : 'Claim'}
+          ? benefit.status === BenefitStatus.CLAIMED
+            ? t('pages.private.collectible.button_benefit_claimed')
+            : t('pages.private.collectible.button_benefit_blocked')
+          : benefit.type === BenefitType.LINK
+            ? t('pages.private.collectible.button_benefit_link')
+            : t('pages.private.collectible.button_benefit_claim')}
       </Button>
     </div>
   );

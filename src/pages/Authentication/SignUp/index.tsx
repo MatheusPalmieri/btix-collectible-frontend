@@ -17,9 +17,11 @@ import { AxiosError } from 'axios';
 import { Info } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const PageSignUp = () => {
+  const { t } = useTranslation();
   const { signUp } = useAuthStore();
   const navigate = useNavigate();
 
@@ -51,7 +53,7 @@ export const PageSignUp = () => {
 
   return (
     <Container flex back='sign-in'>
-      <h1 className='text-2xl text-center font-bold'>Sign in to your account</h1>
+      <h1 className='text-2xl text-center font-bold'>{t('pages.authentication.sign_up.title')}</h1>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
@@ -60,7 +62,7 @@ export const PageSignUp = () => {
             name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_up.name')}</FormLabel>
                 <FormControl>
                   <Input placeholder='Btix Collectible' {...field} />
                 </FormControl>
@@ -74,7 +76,7 @@ export const PageSignUp = () => {
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_up.email')}</FormLabel>
                 <FormControl>
                   <Input placeholder='collectible@btix.app' {...field} />
                 </FormControl>
@@ -88,7 +90,7 @@ export const PageSignUp = () => {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_up.password')}</FormLabel>
                 <FormControl>
                   <Input type='password' placeholder='********' {...field} />
                 </FormControl>
@@ -102,7 +104,7 @@ export const PageSignUp = () => {
             name='passwordConfirmation'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password Confirmation</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_up.confirm_password')}</FormLabel>
                 <FormControl>
                   <Input type='password' placeholder='********' {...field} />
                 </FormControl>
@@ -120,7 +122,7 @@ export const PageSignUp = () => {
           )}
 
           <Button className='w-full' isSubmit isLoading={isLoading} isDisabled={isLoading}>
-            Sign Up
+            {t('pages.authentication.sign_up.sign_up')}
           </Button>
         </form>
       </Form>

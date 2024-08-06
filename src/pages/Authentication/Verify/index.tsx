@@ -11,8 +11,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 export const PageVerify = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<verifyProps>({
@@ -43,13 +45,12 @@ export const PageVerify = () => {
 
   return (
     <Container flex back='sign-in'>
-      <h1 className='text-2xl text-center font-bold'>Verify your account</h1>
+      <h1 className='text-2xl text-center font-bold'>{t('pages.authentication.verify.title')}</h1>
 
       <Form {...form}>
         <form className='space-y-4'>
           <p className='text-secondary-100 text-center'>
-            please enter the verification code we
-            <br /> sent to your email address.
+            {t('pages.authentication.verify.description')}
           </p>
 
           <FormField
@@ -83,9 +84,9 @@ export const PageVerify = () => {
           />
 
           <p className='text-secondary-100 text-center'>
-            Didn't receive the code?{' '}
+            {t('pages.authentication.verify.no_receive')}{' '}
             <span className='text-primary font-semibold cursor-pointer hover:underline transition-colors duration-300'>
-              Resend
+              {t('pages.authentication.verify.resend')}
             </span>
           </p>
         </form>

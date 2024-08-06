@@ -1,4 +1,5 @@
 import en from './en.json';
+import es from './es.json';
 import pt from './pt.json';
 
-export { en, pt };
+export { en, es, pt };

@@ -17,9 +17,11 @@ import { AxiosError } from 'axios';
 import { Info } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const PageSignIn = () => {
+  const { t } = useTranslation();
   const { signIn } = useAuthStore();
   const navigate = useNavigate();
 
@@ -49,7 +51,7 @@ export const PageSignIn = () => {
 
   return (
     <Container flex>
-      <h1 className='text-2xl text-center font-bold'>Sign in to your account</h1>
+      <h1 className='text-2xl text-center font-bold'>{t('pages.authentication.sign_in.title')}</h1>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
@@ -58,7 +60,7 @@ export const PageSignIn = () => {
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_in.email')}</FormLabel>
                 <FormControl>
                   <Input placeholder='collectible@btix.app' {...field} />
                 </FormControl>
@@ -72,7 +74,7 @@ export const PageSignIn = () => {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('pages.authentication.sign_in.password')}</FormLabel>
                 <FormControl>
                   <Input type='password' placeholder='********' {...field} />
                 </FormControl>
@@ -83,7 +85,7 @@ export const PageSignIn = () => {
                     href='forgot-password'
                     className='w-fit ml-auto text-secondary-50 text-sm text-end font-semibold'
                   >
-                    Forgot your password?
+                    {t('pages.authentication.sign_in.forgot_password')}
                   </a>
                 </div>
               </FormItem>
@@ -91,9 +93,9 @@ export const PageSignIn = () => {
           />
 
           <p className='text-secondary-50 text-center'>
-            Don't have an account?{' '}
+            {t('pages.authentication.sign_in.no_account')}{' '}
             <a href='sign-up' className='font-semibold'>
-              Sign up
+              {t('pages.authentication.sign_in.sign_up')}
             </a>
           </p>
 
@@ -106,7 +108,7 @@ export const PageSignIn = () => {
           )}
 
           <Button className='w-full' isSubmit isLoading={isLoading} isDisabled={isLoading}>
-            Sign In
+            {t('pages.authentication.sign_in.sign_in')}
           </Button>
         </form>
       </Form>

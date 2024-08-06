@@ -1,8 +1,8 @@
 import { Authentication } from '@/layouts/Authentication';
 import { Private } from '@/layouts/Private';
-import { PageForgotPassword, PageSignIn, PageSignUp, PageVerify } from '@/pages/Authentication';
-import { PageNotFound } from '@/pages/NotFound';
+import { PageForgotPassword, PageSignIn, PageSignUp } from '@/pages/Authentication';
 import { PageCollectible, PageHome } from '@/pages/Private';
+import { PageNotFound } from '@/pages/Public';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -36,10 +36,6 @@ export const router = createBrowserRouter([
         element: <PageSignUp />,
       },
       {
-        path: 'verify',
-        element: <PageVerify />,
-      },
-      {
         path: 'forgot-password',
         element: <PageForgotPassword />,
       },
@@ -49,7 +45,7 @@ export const router = createBrowserRouter([
   // 404 - Not Found
   {
     path: '*',
-    element: <Navigate to='/404' replace />,
+    element: <Navigate to='/not-found' replace />,
   },
   {
     path: 'not-found',

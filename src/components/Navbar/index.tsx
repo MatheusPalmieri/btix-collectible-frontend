@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAuthStore } from '@/contexts/auth';
 import { ChevronLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Button } from '../ui/button';
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export const Navbar = ({ back }: Props) => {
+  const { t } = useTranslation();
   const { user, signOut } = useAuthStore();
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ export const Navbar = ({ back }: Props) => {
               <div className='w-6 h-6 bg-primary rounded-lg flex items-center justify-center'>
                 <ChevronLeft size='16px' strokeWidth='2px' className='text-gray-50' />
               </div>
-              <span className='text-sm hidden lg:block'>Back</span>
+              <span className='text-sm hidden lg:block'>{t('components.navbar.back')}</span>
             </Button>
           )}
         </div>
@@ -62,12 +64,16 @@ export const Navbar = ({ back }: Props) => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end'>
-                <DropdownMenuItem onClick={() => handleRedirect('')}>Home</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleRedirect('')}>
+                  {t('components.navbar.home')}
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleRedirect('profile')}>
-                  Profile
+                  {t('components.navbar.profile')}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut}>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  {t('components.navbar.sign_out')}
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}

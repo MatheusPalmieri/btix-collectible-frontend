@@ -23,7 +23,7 @@ export interface Benefit {
   type: BenefitType;
 
   name: string;
-  data: { value: string }[];
+  data: { value: string; description?: string }[];
 
   quantity: number;
   quantityClaimed: number;

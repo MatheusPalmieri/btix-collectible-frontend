@@ -11,23 +11,25 @@ import {
 } from '@/components/ui/drawer';
 import { useAuthStore } from '@/contexts/auth';
 import QRCode from 'qrcode.react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/button';
 
 export const Access = () => {
+  const { t } = useTranslation();
   const { user } = useAuthStore();
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
         <Button variant='secondary' className='h-6 rounded-md'>
-          View access
+          {t('components.access.button_access')}
         </Button>
       </DrawerTrigger>
 
       <DrawerContent>
         <DrawerHeader className='p-0'>
           <DrawerTitle>{user?.name}</DrawerTitle>
-          <DrawerDescription>Your personal exclusive access.</DrawerDescription>
+          <DrawerDescription> {t('components.access.description')}</DrawerDescription>
         </DrawerHeader>
 
         <div className='bg-secondary-200 rounded-lg p-4 mx-auto'>
@@ -50,10 +52,10 @@ export const Access = () => {
           <div className='flex gap-2'>
             <DrawerClose className='w-full'>
               <Button variant='ghost' className='w-full'>
-                Close
+                {t('components.access.button_close')}
               </Button>
             </DrawerClose>
-            <Button className='w-full'>Save</Button>
+            <Button className='w-full'> {t('components.access.button_save')}</Button>
           </div>
         </DrawerFooter>
       </DrawerContent>

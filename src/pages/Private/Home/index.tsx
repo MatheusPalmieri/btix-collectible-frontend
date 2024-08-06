@@ -8,9 +8,11 @@ import { getTickets } from '@/services/ticket';
 import { motion } from 'framer-motion';
 import { Eye } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const PageHome = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { user } = useAuthStore();
@@ -122,7 +124,9 @@ export const PageHome = () => {
                 <div>
                   <h2 className='font-bold'>{ticket.name}</h2>
                   <p className='text-sm text-secondary-100 font-medium'>
-                    {ticket.advantage} advantages
+                    {t(`pages.private.home.advantages${ticket.advantage === 1 ? '' : '_plural'}`, {
+                      count: ticket.advantage,
+                    })}
                   </p>
                 </div>
               </div>
@@ -133,9 +137,7 @@ export const PageHome = () => {
 
         {showEmpty && (
           <div className='flex items-center justify-center p-4 rounded-lg bg-secondary-400/70 text-secondary-100'>
-            <p>
-              You don't have any <b>collectibles</b> yet.
-            </p>
+            <p>{t('pages.private.home.empty')}</p>
           </div>
         )}
       </section>

@@ -1,0 +1,75 @@
+{
+  "translation": {
+    "components": {
+      "access": {
+        "button_access": "Acceso",
+        "description": "Tu acceso personal exclusivo",
+        "button_close": "Cerrar",
+        "button_save": "Guardar"
+      },
+      "navbar": {
+        "back": "Volver",
+        "home": "Inicio",
+        "profile": "Perfil",
+        "sign_out": "Cerrar sesión"
+      }
+    },
+    "pages": {
+      "authentication": {
+        "sign_in": {
+          "title": "Inicia sesión en tu cuenta",
+          "email": "Correo electrónico",
+          "password": "Contraseña",
+          "forgot_password": "¿Olvidaste tu contraseña?",
+          "no_account": "¿No tienes una cuenta?",
+          "sign_up": "Regístrate",
+          "sign_in": "Iniciar sesión"
+        },
+        "sign_up": {
+          "title": "Crea tu cuenta",
+          "name": "Nombre",
+          "email": "Correo electrónico",
+          "password": "Contraseña",
+          "confirm_password": "Confirmar Contraseña",
+          "already_have_account": "¿Ya tienes una cuenta?",
+          "sign_in": "Iniciar sesión",
+          "sign_up": "Registrarse"
+        },
+        "forgot_password": {
+          "title": "¿Olvidaste tu contraseña?",
+          "description": "Ingresa tu dirección de correo electrónico para restablecer tu contraseña."
+        },
+        "verify": {
+          "title": "Verifica tu cuenta",
+          "description": "Por favor, ingresa el código de verificación que enviamos a tu dirección de correo electrónico.",
+          "no_receive": "¿No recibiste el código?",
+          "resend": "Reenviar"
+        }
+      },
+      "private": {
+        "collectible": {
+          "benefits": "Beneficios",
+          "button_view_collectible": "Ver coleccionable",
+          "button_benefit_claim": "Reclamar",
+          "button_benefit_claimed": "Reclamado",
+          "button_benefit_link": "Acceder",
+          "button_benefit_blocked": "Bloqueado",
+          "button_benefit_close": "Cerrar"
+        },
+        "home": {
+          "advantages": "{{count}} ventaja",
+          "advantages_plural": "{{count}} ventajas",
+          "empty": "Aún no tienes ningún <b>ítem coleccionable</b>."
+        }
+      },
+      "public": {
+        "not_found": {
+          "title": "Página no encontrada",
+          "description": "Esta página no existe o está desactivada actualmente.",
+          "warn": "Si el problema persiste, ponte en contacto con el soporte.",
+          "back": "Volver a la página de inicio"
+        }
+      }
+    }
+  }
+}

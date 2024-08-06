@@ -15,6 +15,7 @@ import { claimAdvantage } from '@/services/advantage';
 import { motion } from 'framer-motion';
 import { CheckCheck, CircleCheck, Clock, Copy, Lock } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const CollectibleBenefitLink = ({
   benefit,
@@ -25,6 +26,8 @@ export const CollectibleBenefitLink = ({
   advantageId: string;
   fetchAdvantage: () => Promise<void>;
 }) => {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDisabled] = useState<boolean>(benefit.status === BenefitStatus.BLOCKED);
@@ -70,7 +73,11 @@ export const CollectibleBenefitLink = ({
         isLoading={isLoading}
         isDisabled={isLoading || isDisabled}
       >
-        {isDisabled ? (benefit.status === BenefitStatus.CLAIMED ? 'Claimed' : 'Blocked') : 'Access'}
+        {isDisabled
+          ? benefit.status === BenefitStatus.CLAIMED
+            ? t('pages.private.collectible.button_benefit_claimed')
+            : t('pages.private.collectible.button_benefit_blocked')
+          : t('pages.private.collectible.button_benefit_link')}
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -117,11 +124,11 @@ export const CollectibleBenefitLink = ({
             <div className='flex gap-2'>
               <DialogClose className='w-full'>
                 <Button variant='ghost' className='w-full'>
-                  Close
+                  {t('pages.private.collectible.button_benefit_close')}
                 </Button>
               </DialogClose>
               <Button className='w-full' onClick={handleAccess}>
-                Access
+                {t('pages.private.collectible.button_benefit_link')}
               </Button>
             </div>
           </DialogFooter>

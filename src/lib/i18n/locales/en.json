@@ -1,3 +1,75 @@
 {
-  "translation": {}
+  "translation": {
+    "components": {
+      "access": {
+        "button_access": "Access",
+        "description": "Your exclusive personal access",
+        "button_close": "Close",
+        "button_save": "Save"
+      },
+      "navbar": {
+        "back": "Back",
+        "home": "Home",
+        "profile": "Profile",
+        "sign_out": "Sign Out"
+      }
+    },
+    "pages": {
+      "authentication": {
+        "sign_in": {
+          "title": "Sign in to your account",
+          "email": "Email",
+          "password": "Password",
+          "forgot_password": "Forgot password?",
+          "no_account": "Don't have an account?",
+          "sign_up": "Sign Up",
+          "sign_in": "Sign In"
+        },
+        "sign_up": {
+          "title": "Create your account",
+          "name": "Name",
+          "email": "Email",
+          "password": "Password",
+          "confirm_password": "Confirm Password",
+          "already_have_account": "Already have an account?",
+          "sign_in": "Sign In",
+          "sign_up": "Sign Up"
+        },
+        "forgot_password": {
+          "title": "Forgot your password?",
+          "description": "Enter your email address to reset your password."
+        },
+        "verify": {
+          "title": "Verify your account",
+          "description": "Please enter the verification code we sent to your email address.",
+          "no_receive": "Didn't receive the code?",
+          "resend": "Resend"
+        }
+      },
+      "private": {
+        "collectible": {
+          "benefits": "Benefits",
+          "button_view_collectible": "View collectible",
+          "button_benefit_claim": "Claim",
+          "button_benefit_claimed": "Claimed",
+          "button_benefit_link": "Access",
+          "button_benefit_blocked": "Blocked",
+          "button_benefit_close": "Close"
+        },
+        "home": {
+          "advantages": "{{count}} advantage",
+          "advantages_plural": "{{count}} advantages",
+          "empty": "You don't have any <b>collectible items</b> yet."
+        }
+      },
+      "public": {
+        "not_found": {
+          "title": "Page not found",
+          "description": "This page does not exist or is currently inactive.",
+          "warn": "If the problem persists, please contact support.",
+          "back": "Back to the homepage"
+        }
+      }
+    }
+  }
 }
