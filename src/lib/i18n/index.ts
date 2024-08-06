@@ -16,4 +16,5 @@ i18n.use(initReactI18next).init({
   },
   pluralSeparator: '_',
   keySeparator: '.',
+  supportedLngs: ['en', 'es', 'pt'],
 });

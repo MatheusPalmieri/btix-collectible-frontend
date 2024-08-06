@@ -1,7 +1,7 @@
 import { Authentication } from '@/layouts/Authentication';
 import { Private } from '@/layouts/Private';
 import { PageForgotPassword, PageSignIn, PageSignUp } from '@/pages/Authentication';
-import { PageCollectible, PageHome } from '@/pages/Private';
+import { PageCollectible, PageHome, PageProfile } from '@/pages/Private';
 import { PageNotFound } from '@/pages/Public';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
@@ -18,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: 'collectible',
         element: <PageCollectible />,
+      },
+      {
+        path: 'profile',
+        element: <PageProfile />,
       },
     ],
   },
