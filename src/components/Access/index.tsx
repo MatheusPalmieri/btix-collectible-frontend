@@ -10,18 +10,23 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { useAuthStore } from '@/contexts/auth';
+import { cn } from '@/lib/utils';
 import QRCode from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/button';
 
-export const Access = () => {
+interface Props {
+  big?: boolean;
+}
+
+export const Access = ({ big = false }: Props) => {
   const { t } = useTranslation();
   const { user } = useAuthStore();
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant='secondary' className='h-6 rounded-md'>
+        <Button variant='secondary' className={cn('rounded-md', big ? 'w-24 h-10' : 'w-20 h-6')}>
           {t('components.access.button_access')}
         </Button>
       </DrawerTrigger>

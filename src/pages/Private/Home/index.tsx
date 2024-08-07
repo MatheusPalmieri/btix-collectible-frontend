@@ -1,6 +1,7 @@
 import { Access } from '@/components/Access';
 import { Container } from '@/components/Container';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuthStore } from '@/contexts/auth';
 import { Ticket } from '@/interfaces/ticket';
@@ -76,7 +77,17 @@ export const PageHome = () => {
             )}
           </div>
 
-          <Access />
+          <div className='flex gap-2'>
+            <Access />
+
+            <Button
+              variant='secondary'
+              className='w-20 h-6 rounded-md'
+              onClick={() => navigate('profile')}
+            >
+              {t('pages.private.home.button_profile')}
+            </Button>
+          </div>
         </div>
       </section>
 

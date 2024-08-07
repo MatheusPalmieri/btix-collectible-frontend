@@ -57,6 +57,7 @@
           "button_benefit_close": "Close"
         },
         "home": {
+          "button_profile": "Profile",
           "advantages": "{{count}} advantage",
           "advantages_plural": "{{count}} advantages",
           "empty": "You don't have any <b>collectible items</b> yet."

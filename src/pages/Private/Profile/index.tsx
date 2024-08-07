@@ -1,6 +1,10 @@
+import { Access } from '@/components/Access';
 import { Container } from '@/components/Container';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useAuthStore } from '@/contexts/auth';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 
@@ -24,26 +28,76 @@ export const PageProfile = () => {
     },
   ];
 
+  const { user } = useAuthStore();
+
+  const hasUser = !!user?.id;
+  const fallback = user?.name
+    ? user.name
+        .split(' ')
+        .map((name) => name[0])
+        .join('')
+    : '';
+
   return (
-    <Container type='medium'>
-      <section className='flex items-center gap-4'>
+    <Container type='medium' back='/'>
+      <section className='flex flex-col items-center gap-4'>
+        {hasUser && (
+          <Avatar className='size-24'>
+            <AvatarImage src={user?.avatar} />
+            <AvatarFallback>{fallback}</AvatarFallback>
+          </Avatar>
+        )}
+
+        {!hasUser && <Skeleton className='size-24 rounded-lg' />}
+
+        <div className='space-y-0.5 mx-auto text-center'>
+          {hasUser && (
+            <>
+              <h1 className='text-2xl font-bold'>{user?.name}</h1>
+              <p className='text-sm text-secondary-100'>{user?.email}</p>
+            </>
+          )}
+
+          {!hasUser && (
+            <>
+              <Skeleton className='w-24 h-8' />
+              <Skeleton className='w-52 h-5' />
+            </>
+          )}
+        </div>
+
+        <Access big />
+      </section>
+
+      <section>
         <RadioGroup
           defaultValue={language}
           onValueChange={changeLanguage}
-          className='w-full flex justify-between gap-4 transition-all duration-300'
+          className='w-full flex flex-col md:flex-row justify-between gap-4 transition-all duration-300'
         >
           {languages.map(({ value, label }) => {
             const isActive = value === language;
 
             return (
-              <div
-                className={cn(
-                  'w-full h-20 px-4 rounded-lg bg-secondary-300 flex items-center space-x-2',
-                  isActive && 'border border-primary',
-                )}
-              >
-                <RadioGroupItem value={value} id={value} />
-                <Label htmlFor={value}>{label}</Label>
+              <div>
+                <RadioGroupItem value={value} id={value} className='hidden' />
+                <Label htmlFor={value}>
+                  <div
+                    className={cn(
+                      'w-full h-10 bg-secondary-300 rounded-lg flex items-center gap-2 px-4 transition-all duration-300',
+                      isActive && 'ring-2 ring-primary',
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        'size-3 bg-secondary-500/80 rounded-full transition-all duration-300',
+                        isActive && 'bg-primary',
+                      )}
+                    />
+
+                    <p className='font-medium'>{label}</p>
+                  </div>
+                </Label>
               </div>
             );
           })}
