@@ -1,7 +1,6 @@
-import { Access } from '@/components/Access';
+import { IconDiamond } from '@/assets/icons';
 import { Container } from '@/components/Container';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuthStore } from '@/contexts/auth';
 import { Ticket } from '@/interfaces/ticket';
@@ -37,12 +36,7 @@ export const PageHome = () => {
   }, []);
 
   const hasUser = !!user?.id;
-  const fallback = user?.name
-    ? user.name
-        .split(' ')
-        .map((name) => name[0])
-        .join('')
-    : '';
+  const fallback = user?.name ? user.name[0] : '';
 
   const showLoading = isLoading;
   const showTickets = !isLoading && tickets.length > 0;
@@ -50,7 +44,7 @@ export const PageHome = () => {
 
   return (
     <Container type='medium'>
-      <section className='flex items-center gap-4'>
+      <section className='flex items-center gap-4' onClick={() => navigate('profile')}>
         {hasUser && (
           <Avatar className='size-24'>
             <AvatarImage src={user?.avatar} />
@@ -60,34 +54,25 @@ export const PageHome = () => {
 
         {!hasUser && <Skeleton className='size-24 rounded-lg' />}
 
-        <div className='space-y-2'>
-          <div className='space-y-0.5'>
-            {hasUser && (
-              <>
-                <h1 className='text-2xl font-bold'>{user?.name?.split(' ')[0]}</h1>
-                <p className='text-sm text-secondary-100'>{user?.email}</p>
-              </>
-            )}
+        <div className='space-y-0.5'>
+          {hasUser && (
+            <>
+              <h1 className='text-2xl font-bold'>{user?.name?.split(' ')[0]}</h1>
+              <p className='text-sm text-secondary-100'>{user?.email}</p>
+              <div className='flex items-center gap-2'>
+                <IconDiamond className='size-4' />
+                <p className='font-bold'>4.000 pts</p>
+              </div>
+            </>
+          )}
 
-            {!hasUser && (
-              <>
-                <Skeleton className='w-24 h-8' />
-                <Skeleton className='w-52 h-5' />
-              </>
-            )}
-          </div>
-
-          <div className='flex gap-2'>
-            <Access />
-
-            <Button
-              variant='secondary'
-              className='w-20 h-6 rounded-md'
-              onClick={() => navigate('profile')}
-            >
-              {t('pages.private.home.button_profile')}
-            </Button>
-          </div>
+          {!hasUser && (
+            <>
+              <Skeleton className='w-24 h-8' />
+              <Skeleton className='w-52 h-5' />
+              <Skeleton className='w-20 h-6' />
+            </>
+          )}
         </div>
       </section>
 

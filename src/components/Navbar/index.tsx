@@ -25,7 +25,7 @@ export const Navbar = ({ back }: Props) => {
   const handleBack = () => back && navigate(`/${back === '/' ? '' : back}`);
   const handleRedirect = (path: string) => navigate(`/${path}`);
 
-  const fallback = user?.id ? user?.name.split(' ')[0][0].toUpperCase() : '';
+  const fallback = user?.name ? user.name[0] : '';
 
   const handleSignOut = () => {
     signOut();

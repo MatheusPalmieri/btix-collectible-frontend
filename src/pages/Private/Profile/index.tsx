@@ -31,12 +31,7 @@ export const PageProfile = () => {
   const { user } = useAuthStore();
 
   const hasUser = !!user?.id;
-  const fallback = user?.name
-    ? user.name
-        .split(' ')
-        .map((name) => name[0])
-        .join('')
-    : '';
+  const fallback = user?.name ? user.name[0] : '';
 
   return (
     <Container type='medium' back='/'>
