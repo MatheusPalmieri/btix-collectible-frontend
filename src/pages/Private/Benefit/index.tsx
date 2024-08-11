@@ -14,7 +14,7 @@ import { CircleCheck, Clock, ExternalLink, Link, Lock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const PageCollectible = () => {
+export const PageBenefit = () => {
   const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -40,7 +40,7 @@ export const PageCollectible = () => {
   }, []);
 
   return (
-    <Container back='/' type='medium' className='flex flex-col'>
+    <Container back='wallet' type='medium' className='flex flex-col'>
       <section className='flex gap-3'>
         {isLoading && (
           <>

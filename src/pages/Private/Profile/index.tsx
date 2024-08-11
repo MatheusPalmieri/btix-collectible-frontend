@@ -33,6 +33,11 @@ export const PageProfile = () => {
   const hasUser = !!user?.id;
   const fallback = user?.name ? user.name[0] : '';
 
+  const handleChangeLanguage = (value: string) => {
+    changeLanguage(value);
+    document.documentElement.lang = value;
+  };
+
   return (
     <Container type='medium' back='/'>
       <section className='flex flex-col items-center gap-4'>
@@ -67,7 +72,7 @@ export const PageProfile = () => {
       <section>
         <RadioGroup
           defaultValue={language}
-          onValueChange={changeLanguage}
+          onValueChange={handleChangeLanguage}
           className='w-full flex flex-col md:flex-row justify-between gap-4 transition-all duration-300'
         >
           {languages.map(({ value, label }) => {

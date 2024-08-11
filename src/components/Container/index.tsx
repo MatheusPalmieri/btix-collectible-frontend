@@ -23,9 +23,11 @@ export const Container = ({
     large: 'max-w-[1280px]',
   };
 
+  const backFormatted = back?.startsWith('/') ? back : `/${back}`;
+
   return (
     <div>
-      <Navbar back={back} />
+      <Navbar back={backFormatted} />
 
       <main
         className={cn(

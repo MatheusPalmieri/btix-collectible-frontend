@@ -17,16 +17,24 @@ import { Button } from '../ui/button';
 
 interface Props {
   big?: boolean;
+  full?: boolean;
+  variant?: 'default' | 'secondary';
 }
 
-export const Access = ({ big = false }: Props) => {
+export const Access = ({ big = false, full = false, variant = 'secondary' }: Props) => {
   const { t } = useTranslation();
   const { user } = useAuthStore();
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant='secondary' className={cn('rounded-md', big ? 'w-24 h-10' : 'w-20 h-6')}>
+        <Button
+          variant={variant as any}
+          className={cn(
+            'rounded-lg font-semibold',
+            big ? 'w-24 h-10' : full ? 'w-full h-10' : 'w-20 h-6',
+          )}
+        >
           {t('components.access.button_access')}
         </Button>
       </DrawerTrigger>
