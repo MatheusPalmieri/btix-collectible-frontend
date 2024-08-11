@@ -60,7 +60,7 @@
           "button_profile": "Profile",
           "advantages": "{{count}} advantage",
           "advantages_plural": "{{count}} advantages",
-          "empty": "You don't have any <b>collectible items</b> yet."
+          "empty": "You don't have any collectible items yet."
         }
       },
       "public": {

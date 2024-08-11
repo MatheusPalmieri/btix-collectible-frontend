@@ -60,7 +60,7 @@
           "button_profile": "Perfil",
           "advantages": "{{count}} vantagem",
           "advantages_plural": "{{count}} vantagens",
-          "empty": "Você ainda não tem nenhum <b>itens colecionáveis</b>."
+          "empty": "Você ainda não tem nenhum itens colecionáveis."
         }
       },
       "public": {
