@@ -20,7 +20,7 @@
           "title": "Sign in to your account",
           "email": "Email",
           "password": "Password",
-          "forgot_password": "Forgot password?",
+          "forgot_password": "Forgot your password?",
           "no_account": "Don't have an account?",
           "sign_up": "Sign Up",
           "sign_in": "Sign In"
@@ -47,9 +47,9 @@
         }
       },
       "private": {
-        "collectible": {
+        "benefit": {
           "benefits": "Benefits",
-          "button_view_collectible": "View collectible",
+          "button_view_collectible": "View Collectible",
           "button_benefit_claim": "Claim",
           "button_benefit_claimed": "Claimed",
           "button_benefit_link": "Access",
@@ -57,17 +57,28 @@
           "button_benefit_close": "Close"
         },
         "home": {
+          "title_passport": "My Passport",
+          "description_passport": "Exclusive personal access",
+          "title_wallet": "Wallet",
+          "description_wallet": "You own {{count}} collectible",
+          "description_wallet_plural": "You own {{count}} collectibles"
+        },
+        "passport": {
+          "description": "Your exclusive personal access.",
+          "button_save": "Save"
+        },
+        "wallet": {
           "advantages": "{{count}} advantage",
           "advantages_plural": "{{count}} advantages",
-          "empty": "You don't have any collectible items yet."
+          "empty": "You don't have any collectibles yet."
         }
       },
       "public": {
         "not_found": {
-          "title": "Page not found",
-          "description": "This page does not exist or is currently inactive.",
-          "warn": "If the problem persists, please contact support.",
-          "back": "Back to the homepage"
+          "title": "Page Not Found",
+          "description": "This page doesn't exist or is currently inactive.",
+          "warn": "If the problem persists, contact support.",
+          "back": "Go back to the home page"
         }
       }
     }

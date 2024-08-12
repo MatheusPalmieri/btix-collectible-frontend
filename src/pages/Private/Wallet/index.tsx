@@ -83,7 +83,7 @@ export const PageWallet = () => {
                 <div>
                   <h2 className='font-bold'>{name}</h2>
                   <p className='text-sm text-secondary-100 font-medium'>
-                    {t(`pages.private.home.advantages${advantage === 1 ? '' : '_plural'}`, {
+                    {t(`pages.private.wallet.advantages${advantage === 1 ? '' : '_plural'}`, {
                       count: advantage,
                     })}
                   </p>
@@ -96,7 +96,7 @@ export const PageWallet = () => {
 
         {showEmpty && (
           <div className='flex items-center justify-center p-4 rounded-lg bg-secondary-400/70 text-secondary-100'>
-            <p>{t('pages.private.home.empty')}</p>
+            <p>{t('pages.private.wallet.empty')}</p>
           </div>
         )}
       </section>

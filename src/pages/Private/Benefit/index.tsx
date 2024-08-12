@@ -71,13 +71,13 @@ export const PageBenefit = () => {
 
         <div className='hidden md:w-[25%] md:flex justify-end ml-auto'>
           <Button className='font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
-            {t('pages.private.collectible.button_view_collectible')}
+            {t('pages.private.benefit.button_view_collectible')}
           </Button>
         </div>
       </section>
 
       <section className='space-y-4'>
-        <h2 className='text-2xl font-bold'> {t('pages.private.collectible.benefits')}</h2>
+        <h2 className='text-2xl font-bold'> {t('pages.private.benefit.benefits')}</h2>
 
         <Separator />
 
@@ -133,7 +133,7 @@ export const PageBenefit = () => {
 
       <section className='flex-1 flex items-end justify-end md:hidden'>
         <Button className='w-full font-bold' onClick={() => setIsOpen(true)} isLoading={isLoading}>
-          {t('pages.private.collectible.button_view_collectible')}
+          {t('pages.private.benefit.button_view_collectible')}
         </Button>
       </section>
     </Container>
@@ -265,11 +265,11 @@ const Benefits = ({
       >
         {isDisabled
           ? benefit.status === BenefitStatus.CLAIMED
-            ? t('pages.private.collectible.button_benefit_claimed')
-            : t('pages.private.collectible.button_benefit_blocked')
+            ? t('pages.private.benefit.button_benefit_claimed')
+            : t('pages.private.benefit.button_benefit_blocked')
           : benefit.type === BenefitType.LINK
-            ? t('pages.private.collectible.button_benefit_link')
-            : t('pages.private.collectible.button_benefit_claim')}
+            ? t('pages.private.benefit.button_benefit_link')
+            : t('pages.private.benefit.button_benefit_claim')}
       </Button>
     </div>
   );

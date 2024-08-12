@@ -4,15 +4,18 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuthStore } from '@/contexts/auth';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const PageHome = () => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const { user } = useAuthStore();
 
   const hasUser = !!user?.id;
   const fallback = user?.name ? user.name[0] : '';
+
+  const collectibles = 3;
 
   return (
     <Container type='medium'>
@@ -55,8 +58,10 @@ export const PageHome = () => {
           </div>
 
           <div>
-            <h2 className='text-xl font-bold'>Meu Passaporte</h2>
-            <div className='text-secondary-100 text-sm font-medium'>Acesso pessoal exclusivo</div>
+            <h2 className='text-xl font-bold'>{t('pages.private.home.title_passport')}</h2>
+            <div className='text-secondary-100 text-sm font-medium'>
+              {t('pages.private.home.description_passport')}
+            </div>
           </div>
         </div>
 
@@ -68,9 +73,11 @@ export const PageHome = () => {
           </div>
 
           <div>
-            <h2 className='text-xl font-bold'>Carteira</h2>
+            <h2 className='text-xl font-bold'>{t('pages.private.home.title_wallet')}</h2>
             <div className='text-secondary-100 text-sm font-medium'>
-              Você possui 3 colecionáveis
+              {t(`pages.private.home.description_wallet_plural`, {
+                count: collectibles,
+              })}
             </div>
           </div>
         </div>

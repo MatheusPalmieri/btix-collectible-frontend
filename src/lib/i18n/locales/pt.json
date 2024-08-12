@@ -47,7 +47,7 @@
         }
       },
       "private": {
-        "collectible": {
+        "benefit": {
           "benefits": "Benefícios",
           "button_view_collectible": "Ver colecionável",
           "button_benefit_claim": "Coletar",
@@ -57,6 +57,17 @@
           "button_benefit_close": "Fechar"
         },
         "home": {
+          "title_passport": "Meu Passaporte",
+          "description_passport": "Acesso pessoal exclusivo",
+          "title_wallet": "Carteira",
+          "description_wallet": "Você possui {{count}} colecionável",
+          "description_wallet_plural": "Você possui {{count}} colecionáveis"
+        },
+        "passport": {
+          "description": "Seu acesso pessoal exclusivo.",
+          "button_save": "Salvar"
+        },
+        "wallet": {
           "advantages": "{{count}} vantagem",
           "advantages_plural": "{{count}} vantagens",
           "empty": "Você ainda não tem nenhum itens colecionáveis."

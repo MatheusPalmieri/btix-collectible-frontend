@@ -32,7 +32,9 @@ export const PagePassport = () => {
       </div>
 
       <section className='flex-1 flex items-end justify-end'>
-        <Button className='w-full md:w-96 font-semibold'>Save</Button>
+        <Button variant='secondary' className='w-full md:w-96 font-semibold'>
+          Save
+        </Button>
       </section>
     </Container>
   );

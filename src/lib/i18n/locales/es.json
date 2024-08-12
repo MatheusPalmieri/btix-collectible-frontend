@@ -3,7 +3,7 @@
     "components": {
       "access": {
         "button_access": "Acceso",
-        "description": "Tu acceso personal exclusivo",
+        "description": "Su acceso personal exclusivo",
         "button_close": "Cerrar",
         "button_save": "Guardar"
       },
@@ -30,24 +30,24 @@
           "name": "Nombre",
           "email": "Correo electrónico",
           "password": "Contraseña",
-          "confirm_password": "Confirmar Contraseña",
+          "confirm_password": "Confirma tu contraseña",
           "already_have_account": "¿Ya tienes una cuenta?",
           "sign_in": "Iniciar sesión",
           "sign_up": "Registrarse"
         },
         "forgot_password": {
           "title": "¿Olvidaste tu contraseña?",
-          "description": "Ingresa tu dirección de correo electrónico para restablecer tu contraseña."
+          "description": "Introduce tu dirección de correo electrónico para restablecer tu contraseña."
         },
         "verify": {
           "title": "Verifica tu cuenta",
-          "description": "Por favor, ingresa el código de verificación que enviamos a tu dirección de correo electrónico.",
+          "description": "Por favor, introduce el código de verificación que enviamos a tu correo electrónico.",
           "no_receive": "¿No recibiste el código?",
           "resend": "Reenviar"
         }
       },
       "private": {
-        "collectible": {
+        "benefit": {
           "benefits": "Beneficios",
           "button_view_collectible": "Ver coleccionable",
           "button_benefit_claim": "Reclamar",
@@ -57,16 +57,27 @@
           "button_benefit_close": "Cerrar"
         },
         "home": {
+          "title_passport": "Mi Pasaporte",
+          "description_passport": "Acceso personal exclusivo",
+          "title_wallet": "Billetera",
+          "description_wallet": "Posees {{count}} coleccionable",
+          "description_wallet_plural": "Posees {{count}} coleccionables"
+        },
+        "passport": {
+          "description": "Tu acceso personal exclusivo.",
+          "button_save": "Guardar"
+        },
+        "wallet": {
           "advantages": "{{count}} ventaja",
           "advantages_plural": "{{count}} ventajas",
-          "empty": "Aún no tienes ningún ítem coleccionable."
+          "empty": "Aún no tienes coleccionables."
         }
       },
       "public": {
         "not_found": {
           "title": "Página no encontrada",
-          "description": "Esta página no existe o está desactivada actualmente.",
-          "warn": "Si el problema persiste, ponte en contacto con el soporte.",
+          "description": "Esta página no existe o está inactiva en este momento.",
+          "warn": "Si el problema persiste, contacta al soporte.",
           "back": "Volver a la página de inicio"
         }
       }
