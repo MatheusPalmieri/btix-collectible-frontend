@@ -1,11 +1,30 @@
-import { Authentication } from '@/layouts/Authentication';
-import { Private } from '@/layouts/Private';
+import { Authentication, Private, Public } from '@/layouts';
 import { PageForgotPassword, PageSignIn, PageSignUp } from '@/pages/Authentication';
 import { PageBenefit, PageHome, PagePassport, PageProfile, PageWallet } from '@/pages/Private';
-import { PageNotFound } from '@/pages/Public';
+import { PageClub, PageNotFound } from '@/pages/Public';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
+  // Authentication
+  {
+    path: '',
+    element: <Authentication />,
+    children: [
+      {
+        path: 'sign-in',
+        element: <PageSignIn />,
+      },
+      {
+        path: 'sign-up',
+        element: <PageSignUp />,
+      },
+      {
+        path: 'forgot-password',
+        element: <PageForgotPassword />,
+      },
+    ],
+  },
+
   // Private
   {
     path: '',
@@ -34,22 +53,14 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Authentication
+  // Public
   {
     path: '',
-    element: <Authentication />,
+    element: <Public />,
     children: [
       {
-        path: 'sign-in',
-        element: <PageSignIn />,
-      },
-      {
-        path: 'sign-up',
-        element: <PageSignUp />,
-      },
-      {
-        path: 'forgot-password',
-        element: <PageForgotPassword />,
+        path: 'club/:slug',
+        element: <PageClub />,
       },
     ],
   },
