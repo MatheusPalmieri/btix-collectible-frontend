@@ -23,7 +23,7 @@ export const Container = ({
     large: 'max-w-[1280px]',
   };
 
-  const backFormatted = back?.startsWith('/') ? back : `/${back}`;
+  const backFormatted = back ? (back?.startsWith('/') ? back : `/${back}`) : undefined;
 
   return (
     <div>

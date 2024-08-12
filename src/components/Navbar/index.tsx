@@ -22,7 +22,7 @@ export const Navbar = ({ back }: Props) => {
   const { user, signOut } = useAuthStore();
   const navigate = useNavigate();
 
-  const handleBack = () => back && navigate(`/${back === '/' ? '' : back}`);
+  const handleBack = () => back && navigate(back);
   const handleRedirect = (path: string) => navigate(`/${path}`);
 
   const fallback = user?.name ? user.name[0] : '';
