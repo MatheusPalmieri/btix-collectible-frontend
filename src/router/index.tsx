@@ -5,26 +5,6 @@ import { PageClub, PageNotFound } from '@/pages/Public';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
-  // Authentication
-  {
-    path: '',
-    element: <Authentication />,
-    children: [
-      {
-        path: 'sign-in',
-        element: <PageSignIn />,
-      },
-      {
-        path: 'sign-up',
-        element: <PageSignUp />,
-      },
-      {
-        path: 'forgot-password',
-        element: <PageForgotPassword />,
-      },
-    ],
-  },
-
   // Private
   {
     path: '',
@@ -61,6 +41,26 @@ export const router = createBrowserRouter([
       {
         path: 'club/:slug',
         element: <PageClub />,
+      },
+    ],
+  },
+
+  // Authentication
+  {
+    path: '',
+    element: <Authentication />,
+    children: [
+      {
+        path: 'sign-in',
+        element: <PageSignIn />,
+      },
+      {
+        path: 'sign-up',
+        element: <PageSignUp />,
+      },
+      {
+        path: 'forgot-password',
+        element: <PageForgotPassword />,
       },
     ],
   },
