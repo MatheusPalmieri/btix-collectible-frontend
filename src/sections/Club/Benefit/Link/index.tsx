@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Benefit, BenefitStatus } from '@/interfaces/benefit';
 import { motion } from 'framer-motion';
-import { CheckCheck, Copy } from 'lucide-react';
+import { CheckCheck, Copy, Link2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -39,7 +39,11 @@ export const ClubBenefitLink = ({
 
   return (
     <div className='flex items-center justify-between'>
-      <p className='text-sm font-medium'>{benefit.name}</p>
+      <div className='flex items-center gap-1'>
+        <Link2 className='size-3.5 text-zinc-300' />
+
+        <p className='text-sm font-medium'>{benefit.name}</p>
+      </div>
 
       <Button className='w-20 h-6 rounded-md' onClick={handleClaim} isDisabled={isDisabled}>
         {t('pages.private.benefit.button_benefit_link')}

@@ -1,5 +1,6 @@
 import { IconAward } from '@/assets/icons';
 import Logo from '@/assets/images/logo/logo.png';
+import { Container } from '@/components/Container';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Benefit, BenefitStatus, BenefitType } from '@/interfaces/benefit';
@@ -8,7 +9,7 @@ import { CircleEllipsis } from 'lucide-react';
 
 export const PageClub = () => {
   return (
-    <main className='max-w-[800px] mx-auto space-y-4 p-4 md:px-0'>
+    <Container type='medium'>
       <section className='flex flex-col items-center justify-center gap-4'>
         <img
           src='https://btix-static-files.netlify.app/images/layback.png'
@@ -104,6 +105,6 @@ export const PageClub = () => {
       />
 
       <Separator />
-    </main>
+    </Container>
   );
 };
