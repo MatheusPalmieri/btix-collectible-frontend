@@ -26,7 +26,7 @@ export const PageVerify = () => {
     setIsLoading(true);
 
     try {
-      console.log(code);
+      console.warn(code);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
       console.error('Error on verify code:', error);

@@ -10,51 +10,46 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Benefit, BenefitStatus } from '@/interfaces/benefit';
+import { Club } from '@/interfaces/club';
 import { motion } from 'framer-motion';
 import { CheckCheck, Copy, Link2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const ClubBenefitLink = ({
-  benefit,
-}: {
-  benefit: Benefit;
-  advantageId: string;
-  fetchAdvantage: () => Promise<void>;
-}) => {
+interface Props {
+  link: Club['links'][0];
+}
+
+export const ClubBenefitLink = ({ link }: Props) => {
   const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isDisabled] = useState<boolean>(benefit.status === BenefitStatus.BLOCKED);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const handleClaim = async () => setIsOpen(true);
   const handleCopy = () => {
-    navigator.clipboard.writeText(benefit.data[0].value);
+    navigator.clipboard.writeText(link.link);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 3000);
   };
-  const handleAccess = () => window.open(benefit.data[0].value, '_blank');
+  const handleAccess = () => window.open(link.link, '_blank');
 
   return (
     <div className='flex items-center justify-between'>
       <div className='flex items-center gap-1'>
         <Link2 className='size-3.5 text-zinc-300' />
 
-        <p className='text-sm font-medium'>{benefit.name}</p>
+        <p className='text-sm font-medium'>{link.label}</p>
       </div>
 
-      <Button className='w-20 h-6 rounded-md' onClick={handleClaim} isDisabled={isDisabled}>
+      <Button className='w-20 h-6 rounded-md' onClick={handleClaim}>
         {t('pages.private.benefit.button_benefit_link')}
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className='w-5/6 max-w-80 text-secondary-700'>
           <DialogHeader>
-            <DialogTitle className='h-6 flex justify-center items-center'>
-              {benefit.name}
-            </DialogTitle>
+            <DialogTitle className='h-6 flex justify-center items-center'>{link.label}</DialogTitle>
             <DialogDescription>
               This is the link to access the benefit. Please click the button below to copy the
               link.
@@ -67,7 +62,7 @@ export const ClubBenefitLink = ({
               </Label>
               <Input
                 id='link'
-                defaultValue={benefit.data[0].value}
+                defaultValue={link.link}
                 className='bg-tertiary-100 border-none'
                 readOnly
               />
